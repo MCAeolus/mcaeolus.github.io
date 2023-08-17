@@ -2,18 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('https://fonts.google.com/specimen/Source+Code+Pro');
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  font-family: 'Source Code Pro', monospace; 
+}
+
+ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+
+:root {
+  --foreground-rgb: 209, 166, 71;
+  --background-start-rgb: 46, 35, 31;
+  --background-end-rgb: 46, 35, 31;
+}
+
+.no-highlight{
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+  overflow: auto;
+}
+
+a {
+  text-decoration: underline;
 }
 
 body {
@@ -24,4 +50,9 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+input {
+  background: rgb(var(--background-end-rgb));
+  outline: none;
 }
