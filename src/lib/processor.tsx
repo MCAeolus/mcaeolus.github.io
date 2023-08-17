@@ -10,7 +10,7 @@ interface ProcessorContextType {
 }
 
 const ProcessorContext = React.createContext<ProcessorContextType>(null as any);
-export const getProcessor = () => React.useContext(ProcessorContext);
+export const useProcessor = () => React.useContext(ProcessorContext);
 
 export const Processor = ({ children }) => {
     const [command, _setCommand] = React.useState('');

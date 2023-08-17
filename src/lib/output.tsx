@@ -1,10 +1,10 @@
-import {getProcessor} from "@/lib/processor";
+import {useProcessor} from "@/lib/processor";
 import {Entry} from "@/lib/entry";
 import Prefix from "@/lib/prefix";
 
 export const Output = () => {
 
-    const { history } = getProcessor();
+    const { history } = useProcessor();
 
     return (
         <>
