@@ -19,7 +19,6 @@ jobs:
           # update the Node version to meet your needs
           node-version: 19
           cache: npm
-
       - name: Build
         run: |
           npm ci
@@ -28,7 +27,6 @@ jobs:
           touch out/.nojekyll
           npm set-script build "next build"
           npm set-script export "next export"
-
       - name: Deploy
           # https://github.com/JamesIves/github-pages-deploy-action
           uses: JamesIves/github-pages-deploy-action@4.4.0
