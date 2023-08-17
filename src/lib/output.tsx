@@ -10,6 +10,7 @@ export const Output = () => {
         <>
             {
                 history.filter(entry => entry.command !== '').map((entry: Entry, index: number) => (
+                // eslint-disable-next-line react/jsx-key
                 <div>
                     <Prefix/>
                     <span

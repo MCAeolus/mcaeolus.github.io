@@ -51,7 +51,7 @@ export const Processor = ({ children }) => {
 
     useEffect(() => {
         execute();
-    }, [command]);
+    }, [execute, command]);
 
     return (
         <ProcessorContext.Provider
