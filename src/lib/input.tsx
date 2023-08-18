@@ -2,9 +2,10 @@ import { Prefix } from './prefix';
 import React, {useEffect, useState} from 'react';
 import {useProcessor} from "@/lib/processor";
 
-export const Input = ({inputRef: inputRef, container: container, routeCommand: routeCommand}) => {
+export const Input = ({inputRef, container, routeCommand}) => {
     const [inputValue, setInputValue] = useState('');
     const { setCommand, history } = useProcessor();
+    const [usedRouteCommand, setUsedRouteCommand] = useState(false);
 
     const handleInput = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter' || event.code === '13') {
@@ -12,17 +13,18 @@ export const Input = ({inputRef: inputRef, container: container, routeCommand: r
             setCommand(inputValue);
             setInputValue('');
         }
-    }
+    };
 
     useEffect(() => {
-        if (routeCommand !== undefined) {
+        if (routeCommand !== undefined && !usedRouteCommand) {
             setCommand(routeCommand);
+            setUsedRouteCommand(true);
         }
-    })
+    }, []);
 
     useEffect(() => {
         container.current.scrollTo(0, container.current.scrollHeight);
-    }, [history, container])
+    }, [history, container]);
 
     return (
     <>

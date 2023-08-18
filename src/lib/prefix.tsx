@@ -4,7 +4,7 @@ export const Prefix = () => {
     const [host, setHost] = useState('');
 
     useEffect(() => {
-        if (typeof window !== undefined) setHost(window.location.hostname);
+        setHost(window.location.hostname);
     }, []);
     
     return (
