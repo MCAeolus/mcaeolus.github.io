@@ -1,11 +1,19 @@
 import { Prefix } from './prefix';
-import React, {useEffect, useState} from 'react';
+import React, {MutableRefObject, useEffect, useState} from 'react';
 import {useProcessor} from "@/lib/processor";
 
-export const Input = ({inputRef, container, routeCommand}) => {
+type InputProps = {
+    inputRef: MutableRefObject<HTMLInputElement>;
+    container: MutableRefObject<HTMLDivElement>;
+    routeCommand: MutableRefObject<string | undefined>;
+}
+
+export const Input: React.FunctionComponent<InputProps> = (props) => {
+    const { inputRef, container, routeCommand } = props;
+
     const [inputValue, setInputValue] = useState('');
-    const { setCommand, history } = useProcessor();
     const [usedRouteCommand, setUsedRouteCommand] = useState(false);
+    const { setCommand, history } = useProcessor();
 
     const handleInput = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter' || event.code === '13') {

@@ -22,7 +22,7 @@ export const Output = () => {
                         {entry.command}
                     <br/>
                         <div
-                            dangerouslySetInnerHTML={{ __html: entry.output }}
+                            dangerouslySetInnerHTML={{ __html: entry.output }} //spooky
                         />
                     </span>
                 </div>))

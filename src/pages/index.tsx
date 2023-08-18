@@ -4,9 +4,8 @@ import { Input, Output } from '@/lib/index';
 import {withRouter} from "next/router";
 
 function Home(props) {
-  const shellRef = React.useRef(null);
-  const inputRef = React.useRef(null);
-  const outputRef = React.useRef(null);
+  const shellRef = React.createRef<HTMLDivElement>();
+  const inputRef = React.createRef<HTMLInputElement>();
 
   const command = props.router.query.command;
 
@@ -17,7 +16,6 @@ function Home(props) {
   useEffect(() => {
     refocusInput();
   }, []);
-
   return (
     <>
       <Head>
@@ -38,7 +36,7 @@ function Home(props) {
             padding: "10px",
             }}>
           {/* <History history={history} /> */}
-            <Output outputRef={outputRef}/>
+            <Output />
             <Input inputRef={inputRef} container={shellRef} routeCommand={command} />
         </div>
     </div>
