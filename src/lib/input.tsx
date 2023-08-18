@@ -5,7 +5,7 @@ import {useProcessor} from "@/lib/processor";
 type InputProps = {
     inputRef: MutableRefObject<HTMLInputElement>;
     container: MutableRefObject<HTMLDivElement>;
-    routeCommand: MutableRefObject<string | undefined>;
+    routeCommand: string;
 }
 
 export const Input: React.FunctionComponent<InputProps> = (props) => {
