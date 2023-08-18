@@ -43,8 +43,6 @@ export const Processor = ({ children }) => {
                 }
                 break;
         }
-
-
     }
 
     useEffect(() => {

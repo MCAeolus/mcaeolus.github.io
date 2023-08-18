@@ -19,7 +19,8 @@ function Home(props) {
   return (
     <>
       <Head>
-        <title>Nathan Smith | Portfolio</title>
+          <link rel="icon" href="/favicon.ico?"/>
+          <title>Nathan Smith | Portfolio</title>
       </Head>
 
     <div className="overflow-hidden h-full rounded" onClick ={refocusInput}
