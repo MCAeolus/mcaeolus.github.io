@@ -7,30 +7,43 @@ interface ProcessorContextType {
     command: string;
     setHistory: (output: string) => void;
     setCommand: (cmd: string) => void;
+    clearHistory: () => void;
 }
 
-const ProcessorContext = React.createContext<ProcessorContextType>(null as any);
+const busState = {}
+
+export function useHookOutsideContext(hook: string, args: string[]) {
+    busState[hook] = args;
+}
+
+const ProcessorContext = React.createContext<ProcessorContextType>(null);
 export const useProcessor = () => React.useContext(ProcessorContext);
 
 export const Processor = ({ children }) => {
     const [command, _setCommand] = React.useState('');
     const [history, _setHistory] = React.useState([]);
+    const [init, setInit] = React.useState(false);
 
     const setHistory = (output: string) => {
         _setHistory([...history, {
             id: history.length,
-            command,
+            command: command?.split(' ').slice(1),
             output,
         }])
     };
+
+    const clearHistory = () => {
+        _setHistory([]);
+    }
+
     const setCommand = (command: string) => {
-        _setCommand(command);
+        _setCommand([Date.now(), command].join(' '));
     }
 
     const execute = async () => {
-        const [cmd, ...args] = command.split(' ').slice(0);
-
+        const [cmd, ...args] = command.split(' ').slice(1);
         switch (cmd) {
+            case undefined:
             case '':
                 setHistory('');
                 break;
@@ -46,8 +59,21 @@ export const Processor = ({ children }) => {
     }
 
     useEffect(() => {
-        execute();
+        if (init)
+            execute();
+        setInit(true);
     }, [command]);
+
+    useEffect(() => {
+        console.log("in bus state");
+        for (const key in Object.keys(busState)) {
+            if (Object.keys(ProcessorContext).indexOf(key) !== -1) {
+                console.log("executing");
+                ProcessorContext[key](busState[key]);
+            }
+            delete busState[key];
+        }
+    }, [busState]);
 
     return (
         <ProcessorContext.Provider
@@ -56,6 +82,7 @@ export const Processor = ({ children }) => {
                 command,
                 setHistory,
                 setCommand,
+                clearHistory,
             }}
         >
             {children}

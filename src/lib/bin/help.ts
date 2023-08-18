@@ -6,19 +6,19 @@ type HelpObject = {
     manpage: string;
 }
 
-const help = async (args: string[]): Promise<string> => {
+export const help = async (args: string[]): Promise<string> => {
     let command: string;
     let flags: string;
     const binObject = Object.keys(bin);
 
     if (args.length === 0) {
-        return helpInfo.description;
+        return `${helpInfo.description}<br/>${helpInfo.syntax}`;
     }
 
     if (args.length === 1) {
         command = args[0];
         if (binObject.indexOf(command) === -1) {
-            return `Error: invalid builtin command '${command}' specified. Valid entries are ${Object.keys(bin)}.
+            return `Error: invalid builtin command '${command}' specified. Valid entries are "${Object.keys(bin).join(', ')}".
             ${helpInfo.description}`;
         } else {
             return binObject[command].helpInfo ? binObject[command].helpInfo : "Command '${command}' has no help page.";

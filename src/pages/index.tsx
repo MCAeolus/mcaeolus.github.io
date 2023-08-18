@@ -2,10 +2,14 @@ import Head from 'next/head';
 import React, {useEffect} from 'react';
 import { Input, Output } from '@/lib/index';
 import {withRouter} from "next/router";
+import {useTheme} from "@/lib/theme";
+import theme from "tailwindcss/defaultTheme";
 
 function Home(props) {
   const shellRef = React.createRef<HTMLDivElement>();
   const inputRef = React.createRef<HTMLInputElement>();
+
+  const {themeSettings} = useTheme();
 
   const command = props.router.query.command;
 
@@ -26,12 +30,13 @@ function Home(props) {
     <div className="overflow-hidden h-full rounded" onClick ={refocusInput}
         style={{
             padding: "10px",
+            backgroundColor: themeSettings.backgroundColor,
         }}
     >
         <div ref={shellRef} className="overflow-y-auto h-full"
           style={{
-            outlineColor: "gold",
             border: "2px solid",
+            borderColor: themeSettings.borderColor,
             borderRadius: "5px",
             outlineOffset: "-10px",
             padding: "10px",
@@ -50,7 +55,8 @@ function Home(props) {
             lineHeight: "110%",
             letterSpacing: "-1px",
             fontSize: "12px",
-            padding: "10px"
+            padding: "10px",
+            color: themeSettings.footerColor,
         }}
         >
         <pre className="no-highlight">

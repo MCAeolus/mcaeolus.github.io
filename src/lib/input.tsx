@@ -1,6 +1,8 @@
 import { Prefix } from './prefix';
 import React, {MutableRefObject, useEffect, useState} from 'react';
 import {useProcessor} from "@/lib/processor";
+import {useTheme} from "@/lib/theme";
+import theme from "tailwindcss/defaultTheme";
 
 type InputProps = {
     inputRef: MutableRefObject<HTMLInputElement>;
@@ -10,6 +12,8 @@ type InputProps = {
 
 export const Input: React.FunctionComponent<InputProps> = (props) => {
     const { inputRef, container, routeCommand } = props;
+
+    const { themeSettings } = useTheme();
 
     const [inputValue, setInputValue] = useState('');
     const [usedRouteCommand, setUsedRouteCommand] = useState(false);
@@ -55,7 +59,8 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
                 autoCorrect="off"
                 autoComplete="off"
                 style={{
-                    color: 'white',
+                    color: themeSettings.commandColor,
+                    backgroundColor: themeSettings.backgroundColor,
                     marginLeft: '10px',
                 }}
             />

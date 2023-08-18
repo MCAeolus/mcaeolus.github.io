@@ -16,13 +16,6 @@ ul {
   padding-left: 20px;
 }
 
-
-:root {
-  --foreground-rgb: 209, 166, 71;
-  --background-start-rgb: 46, 35, 31;
-  --background-end-rgb: 46, 35, 31;
-}
-
 .no-highlight{
   user-select: none;
   -moz-user-select: none;
@@ -42,17 +35,6 @@ a {
   text-decoration: underline;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 input {
-  background: rgb(var(--background-end-rgb));
   outline: none;
 }
