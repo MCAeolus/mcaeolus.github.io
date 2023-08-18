@@ -1,6 +1,7 @@
 
 export const resume = async (args: string[]): Promise<string> => {
     return `
+<div>
     <h1
         style="text-align: center"
         >
@@ -55,5 +56,6 @@ AUG '19 - GRADUATED MAY '23, Atlanta, GA
                 </td>
             </tr>
         </table>
+</div>
     `;
 }

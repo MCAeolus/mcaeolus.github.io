@@ -38,3 +38,7 @@ a {
 input {
   outline: none;
 }
+
+.bigfooter {
+  visibility: hidden;
+}

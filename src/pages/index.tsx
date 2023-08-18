@@ -59,13 +59,26 @@ function Home(props) {
             color: themeSettings.footerColor,
         }}
         >
-        <pre className="no-highlight">
+        <pre className="bigfooter no-highlight small:visible">
 ██╗    ██╗ █████╗ ████████╗██╗  ██╗ █████╗ ███╗   ██╗<br/>
 ████╗  ██║██╔══██╗╚══██╔══╝██║  ██║██╔══██╗████╗  ██║<br/>
 ██╔██╗ ██║███████║   ██║   ███████║███████║██╔██╗ ██║<br/>
 ██║╚██╗██║██╔══██║   ██║   ██╔══██║██╔══██║██║╚██╗██║<br/>
 ██║ ╚████║██║  ██║   ██║   ██║  ██║██║  ██║██║ ╚████║<br/>
 ╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝<br/>
+        </pre>
+        <pre className="no-highlight small:hidden" style={{
+            position: 'absolute',
+            right: '0',
+            bottom: '0',
+            padding: '20px',
+        }}>
+███╗   ██╗<br/>
+████╗  ██║<br/>
+██╔██╗ ██║<br/>
+██║╚██╗██║<br/>
+██║ ╚████║<br/>
+╚═╝  ╚═══╝<br/>
         </pre>
     </footer>
     </>
