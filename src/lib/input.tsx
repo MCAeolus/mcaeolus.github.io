@@ -2,7 +2,7 @@ import { Prefix } from './prefix';
 import React, {useEffect, useState} from 'react';
 import {useProcessor} from "@/lib/processor";
 
-export const Input = ({ inputRef, container, routeCommand }) => {
+export const Input = ({inputRef: inputRef, container: container, routeCommand: routeCommand}) => {
     const [inputValue, setInputValue] = useState('');
     const { setCommand, history } = useProcessor();
 
@@ -28,7 +28,7 @@ export const Input = ({ inputRef, container, routeCommand }) => {
     <>
         <div
             className="flex flex-row space-x-2"
-        > 
+        >
             <label htmlFor="prompt" className="flex-shrink">
                 <Prefix />
             </label>
@@ -40,7 +40,7 @@ export const Input = ({ inputRef, container, routeCommand }) => {
                 autoFocus
                 onKeyDown={handleInput}
                 value={inputValue}
-                onChange={(event) => setInputValue(event.target.value)}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setInputValue(event.target.value)}
                 autoCapitalize="off"
                 autoCorrect="off"
                 autoComplete="off"
@@ -50,7 +50,7 @@ export const Input = ({ inputRef, container, routeCommand }) => {
                 }}
             />
         </div>
-        
+
     </>);
 }
 

@@ -28,8 +28,6 @@ export const Processor = ({ children }) => {
     }
 
     const execute = async () => {
-        console.log(command);
-        console.log(command.split(' '));
         const [cmd, ...args] = command.split(' ').slice(0);
 
         switch (cmd) {
@@ -51,7 +49,7 @@ export const Processor = ({ children }) => {
 
     useEffect(() => {
         execute();
-    }, [execute, command]);
+    }, [command]);
 
     return (
         <ProcessorContext.Provider
