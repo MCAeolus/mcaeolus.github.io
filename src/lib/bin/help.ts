@@ -18,8 +18,7 @@ export const help = async (args: string[]): Promise<string> => {
     if (args.length === 1) {
         command = args[0];
         if (binObject.indexOf(command) === -1) {
-            return `Error: invalid builtin command '${command}' specified. Valid entries are "${Object.keys(bin).join(', ')}".
-            ${helpInfo.description}`;
+            return `Error: invalid builtin command '${command}' specified. Valid entries are "${Object.keys(bin).join(', ')}"`;
         } else {
             return binObject[command].helpInfo ? binObject[command].helpInfo : "Command '${command}' has no help page.";
         }

@@ -55,7 +55,7 @@ function Home(props) {
             lineHeight: "110%",
             letterSpacing: "-1px",
             fontSize: "12px",
-            padding: "10px",
+            padding: "20px",
             color: themeSettings.footerColor,
         }}
         >
