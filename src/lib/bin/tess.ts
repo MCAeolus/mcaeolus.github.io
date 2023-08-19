@@ -7,10 +7,10 @@ export const tess = (args: string[]) => {
 
 
 //backgroundColor: '#67377b',
-//    guestColor: '#DCDCCD',
-//    atSeparator: '#272525',
-//    hostColor: '#DCDCCD',
-//    locationColor: '#DCDCCD',
-//    footerColor: '#C1A2FA',
-//    borderColor: '#C1A2FA',
-//    commandColor: '#DCDCCD'
+//guestColor: '#DCDCCD',
+//atSeparator: '#272525',
+//hostColor: '#DCDCCD',
+//locationColor: '#DCDCCD',
+//footerColor: '#C1A2FA',
+//borderColor: '#C1A2FA',
+//commandColor: '#DCDCCD'
