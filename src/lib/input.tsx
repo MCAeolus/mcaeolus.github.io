@@ -30,7 +30,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
             setInputValue('');
         } else if (event.key === 'Tab') {
             event.preventDefault();
-            if (predictedCommands !== [] && inputValue !== '') {
+            if (predictedCommands.length > 0 && inputValue !== '') {
                 setInputValue(predictedCommands[predictedCommandIndex]);
                 setPredictedCommandIndex(predictedCommandIndex + 1);
                 if (predictedCommandIndex == predictedCommands.length) {
