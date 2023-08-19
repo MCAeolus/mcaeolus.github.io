@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import {useTheme} from "@/lib/theme";
 import theme from "tailwindcss/defaultTheme";
 
@@ -6,10 +7,13 @@ export const Prefix = () => {
     const [host, setHost] = useState('');
     const { themeSettings } = useTheme();
 
+    const isSmallScreen = useMediaQuery({ query: "(max-width: 600px)"});
+
     useEffect(() => {
-        setHost(window.location.hostname);
-    }, []);
-    
+        setHost(isSmallScreen?'...':window.location.hostname);
+    }, [isSmallScreen]);
+
+
     return (
         <div style=
             {{

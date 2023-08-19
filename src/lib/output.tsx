@@ -2,12 +2,14 @@ import {useProcessor} from "@/lib/processor";
 import {Entry} from "@/lib/entry";
 import Prefix from "@/lib/prefix";
 import {useTheme} from "@/lib/theme";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
 export const Output = () => {
 
     const { history } = useProcessor();
     const { themeSettings } = useTheme();
+
+    const historyDivRef = React.createRef<HTMLDivElement>()
 
     useEffect(() => {}, [history]);
 

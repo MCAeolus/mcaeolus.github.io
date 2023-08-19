@@ -69,3 +69,14 @@ input {
   }
 }
 
+.hiddenAnimation {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.visibleAnimation {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
