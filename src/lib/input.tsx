@@ -38,6 +38,13 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
         container.current.scrollTo(0, container.current.scrollHeight);
     }, [history, container]);
 
+    useEffect(() => { //for 'hyperlinking' from click events
+        if (inputRef.current.value.startsWith("##")) {
+            setCommand(inputRef.current.value.substring(2));
+            setInputValue('');
+        }
+    }, [inputRef.current?.value]);
+
     return (
     <>
         <div

@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {Entry} from "@/lib/entry";
 import {bin} from "@/lib/index";
+import * as Process from "process";
 
 interface ProcessorContextType {
     history: Entry[];
@@ -13,11 +14,14 @@ interface ProcessorContextType {
 const busState = {}
 
 export function useHookOutsideContext(hook: string, args: string[]) {
+    console.log(`here, ${hook}`)
     busState[hook] = args;
 }
 
 const ProcessorContext = React.createContext<ProcessorContextType>(null);
 export const useProcessor = () => React.useContext(ProcessorContext);
+
+const initialCommand = 'changelog';
 
 export const Processor = ({ children }) => {
     const [command, _setCommand] = React.useState('');
@@ -33,7 +37,7 @@ export const Processor = ({ children }) => {
     };
 
     const clearHistory = () => {
-        _setHistory([]);
+        history.length = 0;
     }
 
     const setCommand = (command: string) => {
@@ -58,22 +62,24 @@ export const Processor = ({ children }) => {
         }
     }
 
+    const processorHooks = {clearHistory, setCommand};
+
     useEffect(() => {
+        if (!init && initialCommand) setCommand(initialCommand);
         if (init)
             execute();
         setInit(true);
     }, [command]);
 
     useEffect(() => {
-        console.log("in bus state");
-        for (const key in Object.keys(busState)) {
-            if (Object.keys(ProcessorContext).indexOf(key) !== -1) {
-                console.log("executing");
-                ProcessorContext[key](busState[key]);
+        Object.keys(busState).forEach((key) => {
+            if (Object.keys(processorHooks).indexOf(key) !== -1) {
+                processorHooks[key](busState[key]);
             }
             delete busState[key];
-        }
-    }, [busState]);
+        });
+
+    }, [Object.keys(busState)]);
 
     return (
         <ProcessorContext.Provider
