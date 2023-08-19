@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {Entry} from "@/lib/entry";
 import {bin} from "@/lib/index";
+import {ThemeObject, useTheme} from "@/lib/theme";
 
 interface ProcessorContextType {
     history: Entry[];
@@ -37,8 +38,25 @@ export const Processor = ({ children }) => {
         }])
     };
 
+    const {setThemeSettings} = useTheme();
+
     const clearHistory = () => {
         history.length = 0;
+    }
+
+    const setTheme = (backgroundColor: string, guestColor: string, atSeparator: string,
+                      hostColor: string, locationColor: string, footerColor: string,
+                      borderColor: string, commandColor: string) => {
+        setThemeSettings({
+            backgroundColor: backgroundColor,
+            guestColor: guestColor,
+            atSeparator: atSeparator,
+            hostColor: hostColor,
+            locationColor: locationColor,
+            footerColor: footerColor,
+            borderColor: borderColor,
+            commandColor: commandColor,
+        });
     }
 
     const setCommand = (command: string) => {
@@ -63,7 +81,7 @@ export const Processor = ({ children }) => {
         }
     }
 
-    const processorHooks = {clearHistory, setCommand};
+    const processorHooks = {clearHistory, setCommand, setTheme};
 
     useEffect(() => {
         if (!init && initialCommand) setCommand(initialCommand);
@@ -75,7 +93,7 @@ export const Processor = ({ children }) => {
     useEffect(() => {
         Object.keys(busState).forEach((key) => {
             if (Object.keys(processorHooks).indexOf(key) !== -1) {
-                processorHooks[key](busState[key]);
+                processorHooks[key](...busState[key]);
             }
             delete busState[key];
         });
