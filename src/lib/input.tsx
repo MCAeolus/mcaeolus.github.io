@@ -15,7 +15,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
 
     const { themeSettings } = useTheme();
 
-    const tabSuggestRef = React.createRef();
+    const tabSuggestRef = React.createRef<HTMLSpanElement>();
 
     const [inputValue, setInputValue] = useState('');
     const [usedRouteCommand, setUsedRouteCommand] = useState(false);
