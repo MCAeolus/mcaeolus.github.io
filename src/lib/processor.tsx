@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import {Entry} from "@/lib/entry";
 import {bin} from "@/lib/index";
-import * as Process from "process";
 
 interface ProcessorContextType {
     history: Entry[];
@@ -9,12 +8,12 @@ interface ProcessorContextType {
     setHistory: (output: string) => void;
     setCommand: (cmd: string) => void;
     clearHistory: () => void;
+    validCommands: string[];
 }
 
 const busState = {}
 
 export function useHookOutsideContext(hook: string, args: string[]) {
-    console.log(`here, ${hook}`)
     busState[hook] = args;
 }
 
@@ -27,6 +26,8 @@ export const Processor = ({ children }) => {
     const [command, _setCommand] = React.useState('');
     const [history, _setHistory] = React.useState([]);
     const [init, setInit] = React.useState(false);
+
+    const validCommands = Object.keys(bin);
 
     const setHistory = (output: string) => {
         _setHistory([...history, {
@@ -52,7 +53,7 @@ export const Processor = ({ children }) => {
                 setHistory('');
                 break;
             default:
-                if (Object.keys(bin).indexOf(cmd) === -1) {
+                if (validCommands.indexOf(cmd) === -1) {
                     setHistory(`Unknown command '${cmd}'! Use 'help' for available commands.`)
                 } else {
                     const output = await bin[cmd](args);
@@ -89,6 +90,7 @@ export const Processor = ({ children }) => {
                 setHistory,
                 setCommand,
                 clearHistory,
+                validCommands,
             }}
         >
             {children}

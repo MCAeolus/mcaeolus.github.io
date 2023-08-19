@@ -17,7 +17,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
 
     const [inputValue, setInputValue] = useState('');
     const [usedRouteCommand, setUsedRouteCommand] = useState(false);
-    const { setCommand, history } = useProcessor();
+    const { setCommand, history, validCommands } = useProcessor();
 
     const handleInput = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter' || event.code === '13') {
@@ -39,10 +39,9 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
     }, [history, container]);
 
     useEffect(() => { //for 'hyperlinking' from click events
-        if (inputRef.current.value.startsWith("##")) {
-            setCommand(inputRef.current.value.substring(2));
-            setInputValue('');
-        }
+        validCommands.forEach((cmd) => {
+
+        })
     }, [inputRef.current?.value]);
 
     return (
