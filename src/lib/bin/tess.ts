@@ -2,7 +2,14 @@ import {useHookOutsideContext} from "@/lib/processor";
 
 export const tess = (args: string[]) => {
     useHookOutsideContext('setTheme',
-        ['#67377b','#DCDCCD','#272525','#DCDCCD','#DCDCCD','#C1A2FA','#C1A2FA','#DCDCCD']);
+        ['#502d5e',
+            '#af8bd3',
+            '#DCDCCD',
+            '#af8bd3',
+            '#bbbbb5',
+            '#C1A2FA',
+            '#C1A2FA',
+            '#cabad7']);
 }
 
 

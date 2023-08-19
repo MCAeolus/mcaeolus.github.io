@@ -15,15 +15,28 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
 
     const { themeSettings } = useTheme();
 
+    const tabSuggestRef = React.createRef();
+
     const [inputValue, setInputValue] = useState('');
     const [usedRouteCommand, setUsedRouteCommand] = useState(false);
-    const { setCommand, history, validCommands } = useProcessor();
+    const [predictedCommands, setPredictedCommands] = useState([]);
+    const [predictedCommandIndex, setPredictedCommandIndex] = useState(0);
+    const { command, setCommand, history, validCommands } = useProcessor();
 
     const handleInput = async (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter' || event.code === '13') {
             event.preventDefault();
             setCommand(inputValue);
             setInputValue('');
+        } else if (event.key === 'Tab') {
+            event.preventDefault();
+            if (predictedCommands !== [] && inputValue !== '') {
+                setInputValue(predictedCommands[predictedCommandIndex]);
+                setPredictedCommandIndex(predictedCommandIndex + 1);
+                if (predictedCommandIndex == predictedCommands.length) {
+                    setPredictedCommandIndex(0);
+                }
+            }
         }
     };
 
@@ -38,10 +51,18 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
         container.current.scrollTo(0, container.current.scrollHeight);
     }, [history, container]);
 
-    useEffect(() => { //for 'hyperlinking' from click events
-        validCommands.forEach((cmd) => {
+    useEffect(() => {
+        setPredictedCommandIndex(0);
+        if (inputRef.current.value === '') {
+            tabSuggestRef.current.innerHTML = '';
+            return;
+        }
+        const possibleCommands = validCommands.filter(entry => entry.startsWith(inputRef.current.value));
+        if (possibleCommands.length > 0) {
+            setPredictedCommands(possibleCommands);
+            tabSuggestRef.current.innerHTML = possibleCommands[0];
+        }
 
-        })
     }, [inputRef.current?.value]);
 
     return (
@@ -68,8 +89,15 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
                     color: themeSettings.commandColor,
                     backgroundColor: themeSettings.backgroundColor,
                     marginLeft: '10px',
+                    zIndex: "1",
+
+                    position: "relative",
+                    justifyContent: "center",
+                    alignItems: "center",
+
                 }}
             />
+            <span ref={tabSuggestRef}></span>
         </div>
 
     </>);
