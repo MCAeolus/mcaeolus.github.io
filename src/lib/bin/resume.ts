@@ -5,7 +5,7 @@ export const resume = async (args: string[]): Promise<string> => {
     <h1
         style="text-align: center"
         >
-    Nathan Smith | Atlanta, GA | nsmith320@gatech.edu | <a href="https://www.linkedin.com/in/nathansmith2023/" target="_blank">Linkedin</a> | <a href="https://github.com/MCAeolus" target="_blank">Github</a></h1>
+    Nathan Smith | Columbia, MO | nsmith320@gatech.edu | <a href="https://www.linkedin.com/in/nathansmith2023/" target="_blank">Linkedin</a> | <a href="https://github.com/MCAeolus" target="_blank">Github</a></h1>
     <table
         style="align-content: normal; width=100%; table-layout: fixed"
         >

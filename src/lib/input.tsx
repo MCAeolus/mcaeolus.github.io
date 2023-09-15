@@ -32,10 +32,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
             event.preventDefault();
             if (predictedCommands.length > 0 && inputValue !== '') {
                 setInputValue(predictedCommands[predictedCommandIndex]);
-                setPredictedCommandIndex(predictedCommandIndex + 1);
-                if (predictedCommandIndex == predictedCommands.length) {
-                    setPredictedCommandIndex(0);
-                }
+                setPredictedCommandIndex((predictedCommandIndex + 1) % predictedCommands.length);
             }
         }
     };
@@ -73,6 +70,7 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
             <label htmlFor="prompt" className="flex-shrink">
                 <Prefix />
             </label>
+            <span ref={tabSuggestRef}></span>
             <input
                 ref={inputRef}
                 id="prompt"
@@ -97,7 +95,6 @@ export const Input: React.FunctionComponent<InputProps> = (props) => {
 
                 }}
             />
-            <span ref={tabSuggestRef}></span>
         </div>
 
     </>);

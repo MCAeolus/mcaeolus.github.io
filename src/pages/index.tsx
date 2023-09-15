@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React, {useEffect} from 'react';
 import { Input, Output } from '@/lib/index';
-import {withRouter} from "next/router";
+import {useRouter, withRouter} from "next/router";
 import {useTheme} from "@/lib/theme";
 import theme from "tailwindcss/defaultTheme";
 
@@ -11,7 +11,8 @@ function Home(props) {
 
   const {themeSettings} = useTheme();
 
-  const command = props.router.query.command;
+
+  const command = props.history?.location.pathname;
 
   const refocusInput = () => {
       inputRef.current?.focus();

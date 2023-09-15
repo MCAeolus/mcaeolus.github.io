@@ -5,3 +5,4 @@ export * from './clear';
 export * from './changelog';
 export * from './tess';
 export * from './rainbow';
+export * from './commands';

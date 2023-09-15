@@ -72,7 +72,7 @@ export const Processor = ({ children }) => {
                 break;
             default:
                 if (validCommands.indexOf(cmd) === -1) {
-                    setHistory(`Unknown command '${cmd}'! Use 'help' for available commands.`)
+                    setHistory(`Unknown command '${cmd}'! Use 'commands' for available commands.`)
                 } else {
                     const output = await bin[cmd](args);
                     setHistory(output);
